@@ -12,7 +12,6 @@ export default function RegisterPage() {
         <div className="logo-group">
           <img src={logoImg} alt="CivicPulse Hub logo" />
           <div>
-            <p className="logo-caption">City operations</p>
             <p className="logo-title">CivicPulse Hub</p>
           </div>
         </div>
@@ -58,7 +57,16 @@ export default function RegisterPage() {
               <div className="field-row">
                 <div className="text-field">
                   <label htmlFor="signup-phone">Phone number</label>
-                  <input id="signup-phone" type="tel" placeholder="+91 00000 00000" autoComplete="tel" />
+                  <div className="phone-input-group">
+                    <span className="country-code-static">🇮🇳 +91</span>
+                    <input
+                      id="signup-phone"
+                      type="tel"
+                      placeholder="00000 00000"
+                      autoComplete="tel"
+                      className="phone-number-input"
+                    />
+                  </div>
                 </div>
                 <div className="text-field">
                   <label htmlFor="signup-email">Email ID</label>

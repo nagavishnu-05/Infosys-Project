@@ -225,6 +225,44 @@
   margin-bottom: 0.35rem;
 }
 
+.phone-input-group {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+}
+
+.country-code-static {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 95%, transparent);
+  padding: 0.85rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.phone-number-input {
+  flex: 1;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface) 95%, transparent);
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.phone-number-input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent);
+  outline: none;
+}
+
 .text-field > input,
 .text-field > textarea,
 .text-field > select {
@@ -343,6 +381,14 @@
   .theme-toggle {
     align-self: stretch;
     justify-content: center;
+  }
+
+  .phone-input-group {
+    flex-direction: column;
+  }
+
+  .country-code-static {
+    width: 100%;
   }
 }
 
