@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Lock, Moon, Sun, UserRound } from 'lucide-react'
 import logoImg from '../assets/Logo.jpg'
 import { useThemePreference } from '../hooks/useThemePreference.js'
+import CaptchaVerifier from '../components/CaptchaVerifier'
 
 const portals = [
   { id: 'user', label: 'User Portal', idLabel: 'User ID' },
@@ -13,11 +14,18 @@ const portals = [
 export default function LoginPage() {
   const { theme, toggleTheme } = useThemePreference()
   const [selectedPortal, setSelectedPortal] = useState('user')
+  const [captchaVerified, setCaptchaVerified] = useState(false)
   const activePortal = useMemo(() => portals.find((portal) => portal.id === selectedPortal), [selectedPortal])
   const sliderLeft = useMemo(
     () => `${portals.findIndex((portal) => portal.id === selectedPortal) * 33.3333}%`,
     [selectedPortal],
   )
+
+  const handleCaptchaVerify = (verified) => {
+    setCaptchaVerified(verified)
+  }
+
+  const isFormValid = captchaVerified
 
   return (
     <div className="page">
@@ -81,12 +89,27 @@ export default function LoginPage() {
               <label htmlFor="portal-password">Password</label>
               <div className="input-with-icon">
                 <Lock />
-                <input id="portal-password" type="password" placeholder="Enter password" autoComplete="off" />
+                <input
+                  id="portal-password"
+                  type="password"
+                  placeholder="Enter password"
+                  autoComplete="off"
+                />
               </div>
             </div>
 
+            {/* Password validation hidden */}
+
+            <div className="mt-6 mb-6">
+              <CaptchaVerifier onVerify={handleCaptchaVerify} />
+            </div>
+
             <div className="form-actions">
-              <button type="submit" className="primary-btn">
+              <button
+                type="submit"
+                disabled={!isFormValid}
+                className={`primary-btn ${!isFormValid ? 'opacity-50 cursor-not-allowed' : ''}`}
+              >
                 Continue to {activePortal?.label}
               </button>
               {selectedPortal === 'user' ? (
