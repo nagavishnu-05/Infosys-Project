@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Lock, Moon, Sun, UserRound } from 'lucide-react'
 import logoImg from '../assets/Logo.jpg'
@@ -21,9 +21,9 @@ export default function LoginPage() {
     [selectedPortal],
   )
 
-  const handleCaptchaVerify = (verified) => {
+  const handleCaptchaVerify = useCallback((verified) => {
     setCaptchaVerified(verified)
-  }
+  }, [])
 
   const isFormValid = captchaVerified
 
@@ -71,7 +71,17 @@ export default function LoginPage() {
             ))}
           </div>
 
-          <form className="portal-form">
+          <form className="portal-form" onSubmit={(e) => {
+            e.preventDefault();
+            if (isFormValid) {
+              if (selectedPortal === 'user') {
+                window.location.href = '/citizen';
+              } else {
+                // Handle other portals or show alert
+                alert(`Logging into ${activePortal?.label}... (Any password accepted)`);
+              }
+            }
+          }}>
             <div className="text-field">
               <label htmlFor="portal-id">{activePortal?.idLabel}</label>
               <div className="input-with-icon">
@@ -80,6 +90,7 @@ export default function LoginPage() {
                   id="portal-id"
                   type="text"
                   name="portal-id"
+                  defaultValue="user"
                   placeholder={`Enter your ${activePortal?.idLabel.toLowerCase()}`}
                 />
               </div>
@@ -92,6 +103,7 @@ export default function LoginPage() {
                 <input
                   id="portal-password"
                   type="password"
+                  defaultValue="password"
                   placeholder="Enter password"
                   autoComplete="off"
                 />
