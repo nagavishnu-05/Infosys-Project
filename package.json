@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "my-admin",
   "private": true,
@@ -15,3 +16,23 @@
     "vite": "^7.2.4"
   }
 }
+=======
+{
+  "name": "infosys-root",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": [
+    "Frontend"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w Frontend",
+    "build": "npm run build -w Frontend",
+    "lint": "npm run lint -w Frontend",
+    "preview": "npm run preview -w Frontend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
+>>>>>>> 093a2bd23066d9177a3b4168341a3b26f1a54e4b
