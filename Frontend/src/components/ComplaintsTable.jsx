@@ -20,10 +20,11 @@ function Badge({ text, tone }) {
 
 export default function ComplaintsTable({ rows, isAdmin = false, updateComplaint, onView }) {
   return (
-    <div className="overflow-x-auto">
+    <div className="overflow-x-auto"> 
+      <caption className="sr-only">Complaints list</caption>
       <table className="w-full text-left min-w-[700px]">
         <thead className="border-b-2 border-gray-200 dark:border-gray-700">
-          <tr>
+          <tr key="header">
             <th className="py-4 text-sm font-semibold text-black dark:text-gray-300">Complaint ID</th>
             <th className="text-sm font-semibold text-black dark:text-gray-300">Title</th>
             <th className="text-sm font-semibold text-black dark:text-gray-300">Department</th>
@@ -58,3 +59,4 @@ export default function ComplaintsTable({ rows, isAdmin = false, updateComplaint
     </div>
   );
 }
+
